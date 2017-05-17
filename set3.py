@@ -14,6 +14,8 @@ Euler method. Takes initial conditions for position and velocity, x0 and v0,
 respectively, and plots x_i and v_i against time at sufficiently small time
 steps t_i = t0 + ih, i = 1, ..., N.
 All arguments are floating point numbers.
+
+I'm adding this line so I can record the change as a commit. 
 """
 def oscillate(x_i, v_i, h):
 
@@ -44,7 +46,7 @@ def oscillate(x_i, v_i, h):
     for i in range(len(t_steps) - 1):
         x_impl[i+1] = H * (x_impl[i] + h * v_impl[i])
         v_impl[i+1] = H * (v_impl[i] - h * x_impl[i])
-        
+
     # For 2.2: symplectic euler method
     for i in range(len(t_steps) - 1):
         x_symp[i+1] = x_symp[i] + h * v_symp[i]
@@ -97,74 +99,74 @@ def oscillate(x_i, v_i, h):
     #x_label = 'Steps, where 1 cycle = 2pi * (1/h) = %f steps' % period
     #y_label = 'Total energy (Green) and Approximate form (Blue)'
     #title = 'Approx. Energy evolution vs. Global Errors in x and v'
-    
-    
-    
+
+
+
     # For 1.5
     # global errors for implicit euler approximation
     #x_impl_err = np.absolute(x - x_impl)
     #v_impl_err = np.absolute(v - v_impl)
     #max_err = np.max([np.max(x_impl_err), np.max(v_impl_err)])
-    
+
     #plt.axis([0, len(t_steps), 0, 2 * max_err])
     #plt.plot(x_impl_err, label='Displacement')
     #plt.plot(v_impl_err, label='Velocity')
-    
+
     #x_label = 'Steps, where 1 cycle = 2pi * (1/h) = %f steps' % period
     #y_label = 'Global error in Displacement'
     #title = 'Oscillatory motion of mass on a string, \nImplicit Euler method'
     #plt.legend()
-    
+
     # Energy evolution: explicit vs. implicit
     #E_expl = np.power(x_expl, 2) + np.power(v_expl, 2)
     #E_impl = np.power(x_impl, 2) + np.power(v_impl, 2)
-    
+
     #plt.plot(E_expl, label='Explicit Euler')
     #plt.plot(E_impl, label='Implicit Euler')
-    
+
     #x_label = 'Steps, where 1 cycle = 2pi * (1/h) = %f steps' % period
     #y_label = 'Energy'
     #title = 'Energy evolution: Explicit vs. Implicit'
     #plt.legend()
-    
-    
-    
+
+
+
     # For 2.1
     plt.plot(x,v, label='Real')
     plt.plot(x_expl, v_expl, label='Expl approx')
     plt.plot(x_impl, v_impl, label='Impl approx')
-    
+
     x_label = 'x, displacement'
     y_label = 'v, velocity'
     title = 'Phase space, h = %f' % h
     plt.legend()
-    
+
     # For 2.2
     #plt.plot(x_symp, v_symp, label='Symp approx')
-    
+
     #x_label = 'x, displacement'
     #y_label = 'v, velocity'
     #title = 'Phase space, h = %f' % h
     #plt.legend()
-    
+
     # For 2.3
     #E_symp = np.power(x_symp, 2) + np.power(v_symp, 2)
     #E = np.power(x, 2) + np.power(v, 2)
     #plt.plot(E_symp, label='Symplectic approx')
     #plt.plot(E, label='Analytic')
-    
+
     #x_label = 'steps'
     #y_label = 'Energy'
     #title = 'Energy evolution, h = %f' % h
     #plt.legend()
-    
+
     # For 1.1, 1.2, 1.4, 1.5
     plt.xlabel(x_label)
     plt.ylabel(y_label)
     plt.title(title)
     plt.show()
-    
-    
+
+
 
 """
 Calculate relationship between truncation error and h.
