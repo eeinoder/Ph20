@@ -1,0 +1,3 @@
+# Defined variables
+SET1_SRC=set1.py
+SET1_EXE=python $(SET1_SRC)
