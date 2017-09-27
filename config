@@ -1,3 +1,5 @@
 # Defined variables
-SET1_SRC=set1.py
-SET1_EXE=python $(SET1_SRC)
+SET1_SRC1=set1.py
+SET1_EXE1=python $(SET1_SRC1)
+SET1_SRC2=set1.tex
+SET1_EXE2=pdflatex $(SET1_SRC2)

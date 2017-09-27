@@ -1,17 +1,23 @@
 # Run set1.py and produce plots
 include config
 
-## dats	: Produce plots.
-.PHONY : dats
-dats : plot1.dat plot2.dat plot3.dat
+TXT_FILES=$(wildcard inputs/*.txt)
 
-%.dat : values/%.txt $(SET1_SRC)
-	$(SET1_EXE) $< > $@
+## variables	:
+.PHONY : variables
+variables:
+	@echo TXT_FILES: $(TXT_FILES)
 
-## clean	: Remove auto-generated files.
-.PHONY : clean
-clean :
-	rm -f *.dat
+## plotimage	: Produce plots.
+.PHONY : imgs
+imgs :
+	$(SET1_EXE1) $(TXT_FILES)
+
+## latexfile	: Compile latex file into pdf.
+.PHONY : latexfile
+latexfile:
+	$(SET1_EXE2)
+
 
 .PHONY : help
 help : Makefile
