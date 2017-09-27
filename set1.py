@@ -7,6 +7,7 @@ import math
 import sys
 import numpy as np
 import matplotlib.pyplot as plt
+import fileinput
 
 
 # Generate ASCII text files for 2)
@@ -129,7 +130,10 @@ def trigFunc4(a, b, c, d, p):
         for n time-steps of size t
     """
     t = 0.01
-    n = 10000
+    n = 2000
+    
+    if(d/b <= 1.01):
+        n = 10000
     
     x = np.arange(n+1)
     X = a * np.cos(2 * np.pi * b * t * x)
@@ -169,26 +173,21 @@ def trigFunc4(a, b, c, d, p):
     
 
 def main():
-    # assume command line arguments are correct
-    a = float(sys.argv[1])
-    b = float(sys.argv[2])
-    c = float(sys.argv[3])
-    d = float(sys.argv[4])
-    p = float(sys.argv[5])
+    # cmd line arguments are non-zero number of textfiles wherein each
+    # line is of the format 'a b c d p key' to be used in plots and 
+    # calculations.
     
-    # Either 1, 2, 3, or 4. 
-    # 1 calls trigFunc1 and produces X,Y,Z ascii files.
-    # 2 calls trigFunc2 and produces various plots. Etc.
-    key = int(sys.argv[6])
-    
-    if(key == 1):
-        trigFunc1(a,b,c,d,p)
-    elif(key == 2):
-        trigFunc2(a,b,c,d,p)
-    elif(key == 3):
-        trigFunc3(a,b,c,d,p)
-    elif(key == 4):
-        trigFunc4(a,b,c,d,p)
+    for line in fileinput.input():
+        vars = list(map(float, line.split()))
+
+        if(vars[-1] == 1):
+            trigFunc1(vars[0],vars[1],vars[2],vars[3],vars[4])
+        elif(vars[-1] == 2):
+            trigFunc2(vars[0],vars[1],vars[2],vars[3],vars[4])
+        elif(vars[-1] == 3):
+            trigFunc3(vars[0],vars[1],vars[2],vars[3],vars[4])
+        elif(vars[-1] == 4):
+            trigFunc4(vars[0],vars[1],vars[2],vars[3],vars[4])
         
             
 if __name__ == '__main__':
